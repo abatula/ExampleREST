@@ -6,7 +6,7 @@ from .serializers import StudentSerializer
 
 
 @api_view(['GET', 'POST'])
-def snippet_list(request):
+def student_list(request, format=None):
     """
     List all students, or create a new student.
     """
@@ -24,7 +24,7 @@ def snippet_list(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def student_detail(request, student_id):
+def student_detail(request, student_id, format=None):
     """
     Retrieve, update or delete a student instance.
     """
@@ -34,7 +34,7 @@ def student_detail(request, student_id):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = StudentSerializer(snippet)
+        serializer = StudentSerializer(student)
         return Response(serializer.data)
 
     elif request.method == 'PUT':
